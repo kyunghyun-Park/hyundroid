@@ -5,6 +5,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
 
 public class MainActivity extends AppCompatActivity {
     PersonAdapter adapter;
@@ -26,5 +28,15 @@ public class MainActivity extends AppCompatActivity {
         adapter.addItem(person2);
         adapter.addItem(person3);
         recyclerView.setAdapter(adapter);
+        adapter.setOnItemClickListener(new OnPersonItemClickListener() {
+            @Override
+            public void onItemClick(PersonAdapter.ViewHolder holder, View view, int position) {
+                Person item=adapter.getItem(position);
+                Log.d("MainActivity","이름: "+item.getName());
+                Log.d("MainActivity","전화번호: "+item.getTel());
+                Log.d("MainActivity","이메일: "+item.getEmail());
+                Log.d("MainActivity","주소: "+item.getAddr());
+            }
+        });
     }
 }

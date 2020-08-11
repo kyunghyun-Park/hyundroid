@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    app:layout_constraintCircleRadius="20dp"
+
+    >
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -16,8 +20,7 @@
             android:layout_height="100dp"
             android:layout_margin="5dp"
             android:background="@drawable/stroke"
-            android:src="@drawable/batman"
-            />
+            android:src="@drawable/batman" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -28,44 +31,50 @@
                 android:id="@+id/name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="이름"
-                android:textSize="20sp"
-                android:layout_marginTop="7dp"
-                android:layout_marginBottom="7dp"/>
+                android:layout_marginTop="13dp"
+                android:layout_marginBottom="7dp"
+                android:fontFamily="@font/bccard"
+                android:text="이름 : "
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/phone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="전화"
-                android:textSize="20sp"
-                android:layout_marginBottom="7dp"/>
+                android:layout_marginBottom="7dp"
+                android:fontFamily="@font/bccard"
+                android:text="전화 : "
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/email"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="이메일"
+                android:fontFamily="@font/bccard"
+                android:text="이메일 : "
                 android:textSize="20sp" />
 
         </LinearLayout>
     </LinearLayout>
-
-    <ImageView
-        android:id="@+id/addr_image"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:src="@drawable/map"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"/>
 
     <TextView
         android:id="@+id/address"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#D1D1D1"
+        android:fontFamily="@font/bccard"
         android:text="주소 정보"
         android:textAlignment="center"
         android:textSize="20sp"/>
+
+    <ImageView
+        android:id="@+id/addr_image"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="10dp"
+        android:src="@drawable/map" />
+
+
 
 </LinearLayout>

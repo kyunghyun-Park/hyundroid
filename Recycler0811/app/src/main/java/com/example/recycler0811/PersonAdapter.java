@@ -15,15 +15,18 @@ import java.util.ArrayList;
 import javax.xml.namespace.QName;
 
 public class PersonAdapter extends
-        RecyclerView.Adapter<PersonAdapter.ViewHolder> {
+        RecyclerView.Adapter<PersonAdapter.ViewHolder>
+        implements OnPersonItemClickListener {
+
     ArrayList<Person> items = new ArrayList<>();
+    OnPersonItemClickListener listener;
 
     @NonNull
     @Override
     public PersonAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         View itemView = inflater.inflate(R.layout.list_layout, parent, false);
-        return new ViewHolder(itemView);
+        return new ViewHolder(itemView, this);
     }
 
     @Override
@@ -45,11 +48,22 @@ public class PersonAdapter extends
         return items.get(position);
     }
 
+    public void setOnItemClickListener(OnPersonItemClickListener listener) {
+        this.listener = listener;
+    }
+
+    @Override
+    public void onItemClick(ViewHolder holder,View view, int position) {
+        if (listener != null) {
+            listener.onItemClick(holder, view, position);
+        }
+    }
+
     static class ViewHolder extends RecyclerView.ViewHolder {
         TextView name, tel, email, addr;
         ImageView addr_img, face;
 
-        public ViewHolder(@NonNull View itemView) {
+        public ViewHolder(@NonNull View itemView, final OnPersonItemClickListener listener) {
             super(itemView);
             name = itemView.findViewById(R.id.name);
             tel = itemView.findViewById(R.id.phone);
@@ -57,12 +71,24 @@ public class PersonAdapter extends
             email = itemView.findViewById(R.id.email);
             addr_img = itemView.findViewById(R.id.addr_image);
             face = itemView.findViewById(R.id.face);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    int position = getAdapterPosition();
+                    if (listener != null) {
+                        listener.onItemClick(ViewHolder.this, view, position);
+                    }
+                }
+            });
         }
 
+
         public void setItem(Person item) {
-            name.setText(item.getName());
-            tel.setText(item.getTel());
-            email.setText(item.getEmail());
+            //String str= name.getText()+item.getName();
+            name.setText(name.getText() + item.getName());
+            tel.setText(tel.getText() + item.getTel());
+            email.setText(email.getText() + item.getEmail());
             addr.setText(item.getAddr());
             addr_img.setImageResource(item.getAddr_img());
             face.setImageResource(item.getFace());
