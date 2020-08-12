@@ -18,7 +18,7 @@
         android:id="@+id/tab3"
         android:enabled="true"
         android:icon="@drawable/iconfinder_map_285662"
-        android:title="지도"
+        android:title="날씨"
         app:showAsAction="ifRoom" />
 
 </menu>

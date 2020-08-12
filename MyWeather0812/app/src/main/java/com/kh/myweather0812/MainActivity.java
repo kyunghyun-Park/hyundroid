@@ -3,6 +3,7 @@ package com.kh.myweather0812;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -30,7 +31,9 @@ public class MainActivity extends AppCompatActivity {
                         Toast.makeText(MainActivity.this, "설정 메뉴", Toast.LENGTH_SHORT).show();
                         return true;
                     case R.id.tab3:
-                        Toast.makeText(MainActivity.this, "지도 메뉴", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity.this, "날씨 메뉴", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(getApplicationContext(), WeatherActivity.class);
+                        startActivity(intent);
                         return true;
                 }
                 return false;
