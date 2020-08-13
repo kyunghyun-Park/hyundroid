@@ -1,6 +1,8 @@
 package com.kh.myweather0812.MyWeather;
 
-public class MyWeather {
+import java.io.Serializable;
+
+public class MyWeather implements Serializable {
     private String time;
     private String temp;
     private String weather;

@@ -2,6 +2,7 @@ package com.kh.myweather0812.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -18,13 +19,14 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 
+import java.io.Serializable;
 import java.net.URL;
 import java.util.ArrayList;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
-public class WeatherActivity extends AppCompatActivity {
+public class WeatherActivity extends AppCompatActivity  {
     TextView weatherInfo;
     ArrayList<MyWeather> weatherArrList = new ArrayList<>();
 
@@ -104,6 +106,9 @@ public class WeatherActivity extends AppCompatActivity {
                 Log.d("onPostExecute", "날씨: " + weatherArrList.get(i).getWeather());
                 Log.d("onPostExecute", "-----------------------------------");
             }
+            Intent intent = new Intent(getApplicationContext(), WeatherView.class);
+            intent.putExtra("MyWeather", weatherArrList);
+            startActivity(intent);
         }
     }
 }
