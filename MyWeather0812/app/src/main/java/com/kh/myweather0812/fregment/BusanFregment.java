@@ -1,13 +1,18 @@
-package com.kh.myweather0812;
-
-import androidx.appcompat.app.AppCompatActivity;
+package com.kh.myweather0812.fregment;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
+
+import androidx.fragment.app.Fragment;
+
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+
+import com.kh.myweather0812.R;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -20,27 +25,29 @@ import java.net.URL;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
-public class WeatherActivity extends AppCompatActivity {
-    TextView weatherInfo;
+public class BusanFregment extends Fragment {
+    Button weatherStart2;
+    TextView weatherInfo2;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_weather);
-        setTitle("날씨 정보");
-
-        weatherInfo = (TextView) findViewById(R.id.weatherInfo);
-        Button weatherStart = (Button) findViewById(R.id.startWeather);
-        weatherStart.setOnClickListener(new View.OnClickListener() {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.busan_fregment, container, false);
+        // fregment layout 연결
+        weatherStart2 = rootView.findViewById(R.id.startWeather2);
+        weatherInfo2 = rootView.findViewById(R.id.weatherInfo2);
+        weatherStart2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                GetXmlTask task = new GetXmlTask();
-                task.execute("http://www.kma.go.kr/wid/queryDFS.jsp?gridx=89&gridy=90");
+                GetXmlTaskFreg task = new GetXmlTaskFreg();
+                task.execute("http://www.kma.go.kr/wid/queryDFS.jsp?gridx=60&gridy=127");
             }
         });
-    }
 
-    private class GetXmlTask extends AsyncTask<String, Void, Document> {
+        return rootView;
+
+    }
+    private class GetXmlTaskFreg extends AsyncTask<String, Void, Document> {
         Document doc = null;
 
         //작업쓰레드 영역
@@ -88,7 +95,7 @@ public class WeatherActivity extends AppCompatActivity {
                 weatherList = weatherElement.getChildNodes();
                 s += "날씨 = " + weatherList.item(0).getNodeValue() + "\n";
             }
-            weatherInfo.setText(s);
+            weatherInfo2.setText(s);
         }
     }
 }
