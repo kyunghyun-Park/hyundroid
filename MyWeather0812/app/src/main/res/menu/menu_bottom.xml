@@ -4,21 +4,23 @@
 
     <item
         android:id="@+id/tab1"
+        app:showAsAction="ifRoom"
         android:enabled="true"
-        android:icon="@drawable/house"
-        android:title="홈"
-        app:showAsAction="always|withText" />
+        android:icon="@drawable/ic_home_24"
+        android:title="홈" />
+
     <item
         android:id="@+id/tab2"
+        app:showAsAction="ifRoom"
         android:enabled="true"
-        android:icon="@drawable/iconfinder_30_5027824"
-        android:title="설정"
-        app:showAsAction="ifRoom" />
+        android:icon="@drawable/ic_settings_24"
+        android:title="설정" />
+
     <item
         android:id="@+id/tab3"
+        app:showAsAction="ifRoom"
         android:enabled="true"
-        android:icon="@drawable/iconfinder_map_285662"
-        android:title="날씨"
-        app:showAsAction="ifRoom" />
+        android:icon="@drawable/ic_location_on_24"
+        android:title="날씨" />
 
 </menu>

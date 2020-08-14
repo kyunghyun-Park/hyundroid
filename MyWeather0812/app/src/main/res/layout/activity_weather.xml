@@ -11,17 +11,13 @@
         android:id="@+id/startWeather"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="대구 날씨 정보 가져오기"
-        android:layout_marginBottom="50dp">
-    </Button>
+        android:text="대구 날씨 정보 가져오기" />
 
     <TextView
         android:id="@+id/weatherInfo"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center_horizontal"
-        android:hint="날씨 정보가 출력됩니다."
+        android:hint="날씨정보가 출력됩니다."
         android:inputType="textMultiLine"
-        android:text=""
-        android:textSize="20sp" />
+        android:textSize="12sp" />
 </LinearLayout>
