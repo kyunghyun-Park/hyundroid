@@ -28,9 +28,11 @@ public class GetXmlTask extends AsyncTask<String, Void, Document> {
     Document doc = null;
     ArrayList<MyWeather> weatherArrList = new ArrayList<>();
     MainActivity mainActivity;
+    String city;
 
-    public GetXmlTask(MainActivity mainActivity) {
+    public GetXmlTask(MainActivity mainActivity, String city) {
         this.mainActivity = mainActivity;
+        this.city = city;
     }
 
     // 작업쓰레드 영역
@@ -145,6 +147,7 @@ public class GetXmlTask extends AsyncTask<String, Void, Document> {
         Intent intent = new Intent(mainActivity,
                 WeatherView.class);
         intent.putExtra("MyWeather", weatherArrList);
+        intent.putExtra("city", city);
         mainActivity.startActivity(intent);
     }
 }

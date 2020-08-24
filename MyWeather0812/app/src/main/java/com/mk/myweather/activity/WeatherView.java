@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -25,6 +26,8 @@ public class WeatherView extends AppCompatActivity {
         ArrayList<MyWeather> weatherArrayList =
                 (ArrayList<MyWeather>) getIntent().
                         getSerializableExtra("MyWeather");
+        String city = getIntent().getStringExtra("city");
+        setTitle(city + " 날씨 정보");
 
         for (int i=0; i<weatherArrayList.size(); i++) {
             Log.d("WeatherView", "날짜: "+
@@ -60,6 +63,10 @@ public class WeatherView extends AppCompatActivity {
                 Log.d("WeatherView", "날짜: " + item.getDate());
                 Log.d("WeatherView", "시간: " + item.getTime());
                 Log.d("WeatherView", "날씨: " + item.getWeather());
+                Intent intent = new Intent(getApplicationContext(),
+                        WeatherDetail.class);
+//                String datetime = item.getDate
+                startActivity(intent);
             }
         });
     }

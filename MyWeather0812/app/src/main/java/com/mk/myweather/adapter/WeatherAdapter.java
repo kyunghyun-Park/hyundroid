@@ -93,16 +93,16 @@ public class WeatherAdapter extends
             int image = 0;
             switch(wfKor) {
                 case "맑음":
-                    image = R.drawable.sunny;
+                    image = R.drawable.sun;
                     break;
                 case "구름 조금":
-                    image = R.drawable.partley_cloudy;
+                    image = R.drawable.cloud;
                     break;
                 case "구름 많음":
-                    image = R.drawable.most_cloudy;
+                    image = R.drawable.cloudy;
                     break;
                 case "흐림":
-                    image = R.drawable.cloudy;
+                    image = R.drawable.dark;
                     break;
                 case "눈/비":
                     image = R.drawable.snow_rain;

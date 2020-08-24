@@ -29,7 +29,7 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
 public class WeatherFragment extends Fragment {
-    TextView kangwon;
+    TextView kangwon, seoul, kyongki, daejun, daegu, pusan, jeju;
     @Override
     public View onCreateView(LayoutInflater inflater,
                              ViewGroup container,
@@ -45,60 +45,24 @@ public class WeatherFragment extends Fragment {
             public void onClick(View view) {
                 Log.d("hack4ork", "강원도 클릭");
                 GetXmlTask task =
-                        new GetXmlTask((MainActivity) getActivity());
+                        new GetXmlTask((MainActivity) getActivity(), "강원도");
                 task.execute(
                         "https://www.kma.go.kr/wid/queryDFS.jsp?gridx=73&gridy=134");
             }
         });
 
+        seoul = rootView.findViewById(R.id.seoul);
+        seoul.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d("hack4ork", "서울 클릭");
+                GetXmlTask task =
+                        new GetXmlTask((MainActivity) getActivity(), "서울");
+                task.execute(
+                        "https://www.kma.go.kr/wid/queryDFS.jsp?gridx=60&gridy=120");
+            }
+        });
+
         return rootView;
-    }
-
-    private class GetXmlTaskFrag extends AsyncTask<String, Void, Document> {
-        Document doc = null;
-
-        // 작업쓰레드 영역
-        @Override
-        protected Document doInBackground(String... strings) {
-            URL url;
-            try {
-                url = new URL(strings[0]);
-                DocumentBuilderFactory dbf =
-                        DocumentBuilderFactory.newInstance();
-                DocumentBuilder db = dbf.newDocumentBuilder();
-                doc = db.parse(new InputSource(url.openStream()));
-                doc.getDocumentElement().normalize();
-            }
-            catch (Exception e) {
-                Log.d("GetXmlTask","xml에러: " + e.getMessage());
-            }
-            return doc;
-        }
-
-        // 작업쓰레드 종료후 처리 (UI 쓰레드)
-        @Override
-        protected void onPostExecute(Document document) {
-            super.onPostExecute(document);
-
-            String s = "";
-            NodeList nodeList = doc.getElementsByTagName("data");
-
-            for (int i=0; i<nodeList.getLength(); i++) {
-                s += "" + i + ": 날씨 정보: ";
-                Node node = nodeList.item(i);
-                Element fstElmnt = (Element) node;
-
-                NodeList tempList = fstElmnt.getElementsByTagName("temp");
-                Element nameElement = (Element) tempList.item(0);
-                tempList = nameElement.getChildNodes();
-                s += "온도 = " + tempList.item(0).getNodeValue() + " ,";
-
-                NodeList weatherList = fstElmnt.getElementsByTagName("wfKor");
-                Element weatherElement = (Element) weatherList.item(0);
-                weatherList = weatherElement.getChildNodes();
-                s += "날씨 = " + weatherList.item(0).getNodeValue() + "\n";
-            }
-            //showWeather.setText(s);
-        }
     }
 }
